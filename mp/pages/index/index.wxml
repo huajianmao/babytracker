@@ -1,16 +1,23 @@
 <!--index.wxml-->
 <view class="container">
 
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+  <view class='header'>
+    <image src="../../imgs/index.jpg" class="banner" background-size="cover"></image>
+  </view>
+  <view class='content'>
+    <view class="record">
+      <view class="record-item" catchtap="addActionTap">
+        <image  class="add-action-icon" src="../../imgs/add.png"></image>
+      </view>
+    </view>
+    <block wx:key="{{index}}" wx:for="{{records}}">
+      <view class="record">
+          <view class="record-item">
+            <image src="{{item.icon}}" class="record-item-icon" catchtap="recordChange"></image>
+            <text class='record-item-name'>{{item.name}}</text>
+            <text class="record-item-text">{{item.money}}元</text>
+          </view>
+        </view>
     </block>
   </view>
-
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view>
-  
 </view>

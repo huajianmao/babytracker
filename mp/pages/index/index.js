@@ -4,12 +4,25 @@ const app = getApp()
 
 Page({
   data: {
-    motto: 'Hello Baby',
+    records: [
+      { date: "2018-01-22", icon: "../../imgs/baby/child.png", event: "", picture: "", note: "" },
+      { date: "2018-01-23", icon: "../../imgs/baby/cream.png", event: "", picture: "", note: "" },
+      { date: "2018-01-23", icon: "../../imgs/baby/bottle.png", event: "", picture: "", note: "" },
+      { date: "2018-01-23", icon: "../../imgs/baby/cream.png", event: "", picture: "", note: "" },
+      { date: "2018-01-23", icon: "../../imgs/baby/bottle.png", event: "", picture: "", note: "" },
+      { date: "2018-01-23", icon: "../../imgs/baby/cream.png", event: "", picture: "", note: "" },
+      { date: "2018-01-23", icon: "../../imgs/baby/bottle.png", event: "", picture: "", note: "" }
+    ],
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
   //事件处理函数
+  // FIXME:
+  addActionTap: function() {
+    console.log("Add action tapped!")
+  },
+  // default actions
   bindViewTap: function() {
     wx.navigateTo({
       url: '../logs/logs'
