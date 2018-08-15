@@ -1,6 +1,7 @@
 {
   "pages":[
     "pages/index/index",
+    "pages/record/edit",
     "pages/logs/logs"
   ],
   "window":{

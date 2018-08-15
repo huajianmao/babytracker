@@ -12,10 +12,19 @@
     </view>
     <block wx:key="{{index}}" wx:for="{{records}}">
       <view class="record">
-          <view class="record-item">
-            <image src="{{item.icon}}" class="record-item-icon" catchtap="recordChange"></image>
-            <text class='record-item-name'>{{item.name}}</text>
-            <text class="record-item-text">{{item.money}}元</text>
+          <view class="record-item" catchtap="recordChange">
+            <image wx:if="{{item.event && item.event.icon}}" src="{{item.event.icon}}" class="record-item-icon"></image>
+            <image wx:else src="../../imgs/unknown.png" class="record-item-icon unknown"></image>
+            <view class='record-item-time-block'>
+              <text class='record-item-time-time'> {{item.time}} </text>
+              <text class='record-item-time-date'> {{item.date}}  </text>
+            </view>
+            <view class="record-item-event-block">
+              <text wx:if="{{item.event && item.event.name}}" class="record-item-event-event">{{item.event.name}}</text>
+              <text wx:else class="record-item-event-event unknown">{{"暂时还没填写"}}</text>
+              <text wx:if="{{item.note && item.note != ''}}" class="record-item-event-note">{{item.note}}</text>
+              <text wx:else class="record-item-event-note unknown">{{"什么也没说"}}</text>
+            </view>
           </view>
         </view>
     </block>
