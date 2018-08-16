@@ -21,7 +21,7 @@ body {
 
 .content {
   position: absolute;
-  top: 300rpx;
+  /* top: 300rpx; */
   padding-top: 70rpx;
   left: 0;
   width: 100%;

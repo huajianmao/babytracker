@@ -1,9 +1,9 @@
 <!--index.wxml-->
 <view class="container">
 
-  <view class='header'>
+  <!-- <view class='header'>
     <image src="../../imgs/index.jpg" class="banner" background-size="cover"></image>
-  </view>
+  </view> -->
   <view class='content'>
     <view wx:if="{{onAddingAction}}" class="add-action-block">
       <view class="card">
