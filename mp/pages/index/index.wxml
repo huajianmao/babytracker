@@ -5,19 +5,40 @@
     <image src="../../imgs/index.jpg" class="banner" background-size="cover"></image>
   </view>
   <view class='content'>
-    <view class="record">
-      <view class="record-item" catchtap="addActionTap">
+    <view wx:if="{{onAddingAction}}" class="add-action-block">
+      <view class="card">
+        <view class='card-title"'>
+          <input placeholder="宝宝干啥啦... ..." disabled='true' value='{{newAction.event.name}}'/>
+          <view class='buttons'>
+            <image src="../../imgs/cancel.png" catchtap="cancelAddingTap"></image>
+            <image src="../../imgs/check.png" catchtap="checkAddingTap"></image>
+          </view>
+        </view>
+        <view class='card-body'>
+          <view class='event-selection-block'>
+            <block wx:key="{{index}}" wx:for="{{events}}">
+              <view class="event-selection-item">
+                <image src="{{item.icon}}" class="event-selection-item-icon" catchtap='eventSelectTap' catchlongpress='addingEventDirectlyTap' data-event="{{item}}"></image>
+              </view>
+            </block>
+          </view>
+          <textarea bindblur="bindTextAreaBlur" placeholder='详细描述一下吧！'  auto-height='true' value="{{newAction.note}}"/>
+        </view>
+      </view>
+    </view>
+    <view wx:else>
+      <view class="record-item" catchtap='addActionTap'>
         <image  class="add-action-icon" src="../../imgs/add.png"></image>
       </view>
     </view>
     <block wx:key="{{index}}" wx:for="{{records}}">
       <view class="record">
-          <view class="record-item" catchtap="recordChange">
+          <view class="record-item" catchtap="recordChange" catchlongpress='removeActionTap' data-index="{{index}}">
             <image wx:if="{{item.event && item.event.icon}}" src="{{item.event.icon}}" class="record-item-icon"></image>
             <image wx:else src="../../imgs/unknown.png" class="record-item-icon unknown"></image>
             <view class='record-item-time-block'>
               <text class='record-item-time-time'> {{item.time}} </text>
-              <text class='record-item-time-date'> {{item.date}}  </text>
+              <text class='record-item-time-date'> {{item.day}}  </text>
             </view>
             <view class="record-item-event-block">
               <text wx:if="{{item.event && item.event.name}}" class="record-item-event-event">{{item.event.name}}</text>

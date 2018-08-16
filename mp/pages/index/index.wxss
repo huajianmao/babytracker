@@ -1,5 +1,9 @@
 /**index.wxss**/
 
+body {
+  font-family: 'PingFangSC-Medium', 'PingFang SC Medium', 'PingFang SC';
+  font-size: 36rpx;
+}
 .header {
   display: flex;
   width: 100%;
@@ -32,8 +36,9 @@
 .record-item {
   width: 100%;
   height: 160rpx;
-  background-image: linear-gradient(90deg, white 374rpx, #555 374rpx, #e0e0e0 376rpx, white 376rpx); /* for 50%*/
-  /* background-image: linear-gradient(90deg, white 264rpx, #555 264rpx, #e0e0e0 266rpx, white 266rpx); */ /* for 35%*/
+  /* background-image: linear-gradient(90deg, white 374rpx, #555 374rpx, #e0e0e0 376rpx, white 376rpx); */ /* for 50%*/
+  /* background-image: linear-gradient(90deg, white 264rpx, #555 264rpx, #e0e0e0 266rpx, white 266rpx); */  /* for 35%*/
+  background-image: linear-gradient(90deg, white 284rpx, #555 284rpx, #e0e0e0 286rpx, white 286rpx);  /* for 38.2%*/
   background-position: 0rpx 0rpx;
   background-size: 100% 100%;
   background-repeat: no-repeat;
@@ -50,18 +55,83 @@
 .add-action-icon {
   position: absolute;
   top: 5%;
-  left: 50%;
+  left: 38.2%;
   transform: translate(-50%, -50%);
-  width: 100rpx;
-  height: 100rpx;
+  width: 120rpx;
+  height: 120rpx;
   border-radius: 50%;
   background-color: white;
+}
+
+.add-action-block {
+  margin: -50rpx 50rpx 40rpx 50rpx;
+}
+.card {
+    margin: 8rpx;
+    border: 4rpx solid #eeeeee;
+    border-radius: 8rpx;
+    background-color: #ffffff;
+    box-shadow: 16rpx 16rpx 16rpx 4rpx rgba(0, 0, 255, .15);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+.card-title {
+  padding: 30rpx 40rpx 30rpx 40rpx;
+  background-color: rgba(0, 102, 255, 0.082);
+
+  display: flex;
+  flex-direction: row;
+}
+.card-title input {
+  width: 70%;
+}
+.card-title .buttons {
+  width: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.card-title .buttons image {
+  width: 60rpx;
+  height: 60rpx;
+  margin-left: 20rpx;
+}
+
+.card-body {
+  background-color: snow;
+  word-break:break-all;
+}
+.event-selection-block {
+  margin-bottom: 30rpx;
+  background-color: white;
+  padding: 30rpx 40rpx 30rpx 40rpx;
+  border: 1px solid #eeeeee;
+
+  display: flex;
+  flex-wrap: wrap
+}
+.event-selection-item {
+  width: 20%;
+  height: 120rpx;
+  border: 0rpx solid #eeeeee;
+}
+.event-selection-item-icon {
+  width: 100rpx;
+  height: 100rpx;
+}
+.card-body textarea {
+  width: 86%;
+  resize: vertical; 
+  overflow:hidden;
+  margin: 30rpx 40rpx 30rpx 40rpx;
+  /* max-height: 200rpx; */
 }
 
 .record-item-icon {
   position: absolute;
   top: 30%;
-  left: 50%;
+  left: 38.2%;
   transform: translate(-50%, -50%);
   width: 60rpx;
   height: 60rpx;
@@ -72,7 +142,7 @@
 }
 
 .record-item-time-block {
-  width: 50%;
+  width: 38.2%;
   box-sizing: border-box;
   padding-right: 50rpx;
   height: 100%;
@@ -81,7 +151,6 @@
   align-items: flex-end;
   justify-content: flex-start;
   color: #777;
-  font-family: 'PingFangSC-Medium', 'PingFang SC Medium', 'PingFang SC';
   font-size: 24rpx;
   margin-top: 20rpx;
 }
@@ -95,7 +164,7 @@
 }
 
 .record-item-event-block {
-  width: 50%;
+  width: 61.8%;
   box-sizing: border-box;
   padding-left: 50rpx;
   height: 100%;
@@ -103,7 +172,6 @@
   align-items: flex-start;
   justify-content: flex-start;
   color: #555;
-  font-family: 'PingFangSC-Medium', 'PingFang SC Medium', 'PingFang SC';
   font-size: 24rpx;
   flex-direction: column;
 }
