@@ -1,4 +1,7 @@
 import 'package:babytracker/diagonal_clipper.dart';
+import 'package:babytracker/event_row.dart';
+import 'package:babytracker/list_model.dart';
+import 'package:babytracker/initial_list.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(BabyTracker());
@@ -23,7 +26,18 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  double _imageHeight = 256.0;
+  final GlobalKey<AnimatedListState> _listKey =
+  new GlobalKey<AnimatedListState>();
+  final double _imageHeight = 256.0;
+  ListModel listModel;
+  bool showOnlyCompleted = false;
+
+  @override
+  void initState() {
+    super.initState();
+    listModel = new ListModel(_listKey, events);
+  }
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -40,13 +54,17 @@ class _MainPageState extends State<MainPage> {
   }
 
   Widget _buildIamge() {
-    return new ClipPath(
-      clipper: new DialogonalClipper(),
-      child: new Image.asset(
-        'images/banner.jpg',
-        fit: BoxFit.fitWidth,
-        colorBlendMode: BlendMode.srcOver,
-        color: new Color.fromARGB(120, 20, 10, 40),
+    return new Positioned.fill(
+      bottom: null,
+      child: new ClipPath(
+        clipper: new DialogonalClipper(),
+        child: new Image.asset(
+          'images/banner.jpg',
+          fit: BoxFit.cover,
+          height: _imageHeight,
+          colorBlendMode: BlendMode.srcOver,
+          color: new Color.fromARGB(120, 20, 10, 40),
+        ),
       ),
     );
   }
@@ -115,7 +133,7 @@ class _MainPageState extends State<MainPage> {
 
   Widget _buildHeaderBottom() {
     return new Padding(
-      padding: new EdgeInsets.only(top: _imageHeight * 1.2),
+      padding: new EdgeInsets.only(top: _imageHeight),
       child: new Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -126,9 +144,19 @@ class _MainPageState extends State<MainPage> {
     );
   }
 
-//TODO
   Widget _buildEventsList() {
-    return new Container();
+    return new Expanded(
+      child: new AnimatedList(
+        initialItemCount: events.length,
+        key: _listKey,
+        itemBuilder: (context, index, animation) {
+          return new EventRow(
+            event: listModel[index],
+            animation: animation,
+          );
+        },
+      ),
+    );
   }
 
   Widget _buildEventsHeader() {
