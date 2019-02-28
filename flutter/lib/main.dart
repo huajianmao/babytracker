@@ -2,6 +2,7 @@ import 'package:babytracker/diagonal_clipper.dart';
 import 'package:babytracker/event_row.dart';
 import 'package:babytracker/list_model.dart';
 import 'package:babytracker/initial_list.dart';
+import 'package:babytracker/animated_fab.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(BabyTracker());
@@ -26,8 +27,7 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  final GlobalKey<AnimatedListState> _listKey =
-  new GlobalKey<AnimatedListState>();
+  final GlobalKey<AnimatedListState> _listKey = new GlobalKey<AnimatedListState>();
   final double _imageHeight = 256.0;
   ListModel listModel;
   bool showOnlyCompleted = false;
@@ -44,16 +44,17 @@ class _MainPageState extends State<MainPage> {
       body: new Stack(
         children: <Widget>[
           _buildTimeline(),
-          _buildIamge(),
+          _buildImage(),
           _buildTopHeader(),
           _buildProfileRow(),
-          _buildHeaderBottom(),
+          _buildBottomPart(),
+          _buildFab(),
         ],
       ),
     );
   }
 
-  Widget _buildIamge() {
+  Widget _buildImage() {
     return new Positioned.fill(
       bottom: null,
       child: new ClipPath(
@@ -131,7 +132,7 @@ class _MainPageState extends State<MainPage> {
     );
   }
 
-  Widget _buildHeaderBottom() {
+  Widget _buildBottomPart() {
     return new Padding(
       padding: new EdgeInsets.only(top: _imageHeight),
       child: new Column(
@@ -142,6 +143,25 @@ class _MainPageState extends State<MainPage> {
         ],
       ),
     );
+  }
+
+  Widget _buildFab() {
+    return new Positioned (
+        top: _imageHeight - 100.0,
+        right: -40.0,
+        child: new AnimatedFab ( onClick: _changeFilterState, )
+    );
+  }
+
+  void _changeFilterState() {
+    showOnlyCompleted = !showOnlyCompleted;
+    events.where((event) => !event.completed).forEach((task) {
+      if (showOnlyCompleted) {
+        listModel.removeAt(listModel.indexOf(task));
+      } else {
+        listModel.insert(events.indexOf(task), task);
+      }
+    });
   }
 
   Widget _buildEventsList() {
