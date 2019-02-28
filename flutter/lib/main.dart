@@ -29,9 +29,11 @@ class _MainPageState extends State<MainPage> {
     return new Scaffold(
       body: new Stack(
         children: <Widget>[
+          _buildTimeline(),
           _buildIamge(),
           _buildTopHeader(),
           _buildProfileRow(),
+          _buildHeaderBottom(),
         ],
       ),
     );
@@ -107,6 +109,55 @@ class _MainPageState extends State<MainPage> {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _buildHeaderBottom() {
+    return new Padding(
+      padding: new EdgeInsets.only(top: _imageHeight * 1.2),
+      child: new Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          _buildEventsHeader(),
+          _buildEventsList(),
+        ],
+      ),
+    );
+  }
+
+//TODO
+  Widget _buildEventsList() {
+    return new Container();
+  }
+
+  Widget _buildEventsHeader() {
+    return new Padding(
+      padding: new EdgeInsets.only(left: 64.0),
+      child: new Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          new Text(
+            'My Events',
+            style: new TextStyle(fontSize: 34.0),
+          ),
+          new Text(
+            'FEBRUARY 28, 2019',
+            style: new TextStyle(color: Colors.grey, fontSize: 12.0),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildTimeline() {
+    return new Positioned(
+      top: 0.0,
+      bottom: 0.0,
+      left: 32.0,
+      child: new Container(
+        width: 1.0,
+        color: Colors.grey[300],
       ),
     );
   }
